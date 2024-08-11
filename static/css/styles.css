@@ -1,0 +1,48 @@
+/* styles.css */
+
+.row {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping of columns */
+    gap: 20px; /* Space between columns */
+}
+
+.col {
+    flex: 1 1 calc(33.333% - 20px); /* Responsive column width */
+    box-sizing: border-box; /* Includes padding and border in element's total width and height */
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    transition: transform 0.3s ease;
+    object-fit: cover; /* Makes sure images cover the area without stretching */
+    height: 180px; /* Adjust height as needed */
+    width: 100%; /* Ensures image covers the full width of the card */
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.1);
+}
+
+.card-body {
+    padding: 15px; /* Adjust as needed */
+}
+
+
+@media (max-width: 768px) {
+    .card {
+        width: 100%; /* Adjust card width for smaller screens */
+    }
+}
+
+
