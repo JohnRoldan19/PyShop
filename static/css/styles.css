@@ -36,6 +36,7 @@
   width: 100%;
   height: auto; /* Keeps aspect ratio */
   aspect-ratio: 16  / 12;
+  object-fit: cover;
 }
 
 /* Styling for the card body */
