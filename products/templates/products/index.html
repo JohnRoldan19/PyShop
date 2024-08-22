@@ -2,34 +2,41 @@
 {% load static %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<style>
+    /* Carousel Image Sizing */
+    .carousel-item img {
+        height: 400px;
+        object-fit: cover;
+    }
+
+    /* Product Card Image Sizing */
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+    }
+
+    /* Optional: Adjust card body alignment */
+    .card-body {
+        text-align: center;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
 <h1>Products</h1>
-<div id="carouselExampleFade" class="carousel slide carousel-fade">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="https://www.comingsoon.net/wp-content/uploads/sites/3/2023/04/joaquin-phoenix-joker.png"
-                 class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="https://i.etsystatic.com/32416076/r/il/348217/4239430420/il_1080xN.4239430420_1372.jpg"
-                 class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="https://th.bing.com/th/id/OIP._qNToyMI2GCDnO3wfP84GgHaEJ?rs=1&pid=ImgDetMain"
-                 class="d-block w-100" alt="...">
-        </div>
+
+<!-- Search Form -->
+<form method="GET" action="{% url 'product_list' %}" class="mb-4">
+    <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="Search for products..." value="{{ request.GET.q }}">
+        <button type="submit" class="btn btn-outline-primary">Search</button>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
+</form>
+
+<div id="carouselExampleCaptions" class="carousel slide">
+    <!-- (carousel code here) -->
 </div>
+
 <div class="row">
     {% for product in products %}
     <div class="col">
@@ -39,7 +46,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{ product.name }}</h5>
                 <p class="card-text">${{ product.price }}</p>
-                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-primary">Add to Cart</a>
+                <a href="#" class="btn btn-primary">Add to Cart</a>
             </div>
         </div>
     </div>
@@ -61,3 +68,4 @@
     {% endfor %}
 </div>
 {% endblock %}
+

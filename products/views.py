@@ -1,11 +1,24 @@
-from django.http import HttpResponse
+# products/views.py
+
 from django.shortcuts import render
 from .models import Product
 
-# Create your views here.
-def index(request):
-    products = Product.objects.all()
-    return render(request, 'index.html', {'products': products})              # /product -> index
-                                                      # Uniform Resource Locator (Adress)
+def product_list(request):
+    query = request.GET.get('q')
+    if query:
+        products = Product.objects.filter(name__icontains=query)
+    else:
+        products = Product.objects.all()
+
+    context = {
+        'products': products,
+    }
+    return render(request, 'products/index.html', context)
+
+def product_detail(request, product_id):
+    # Define this view if it's referenced in urls.py
+    pass
+
 def new(request):
-    return HttpResponse('New products')
+    # Define this view if it's referenced in urls.py
+    pass
